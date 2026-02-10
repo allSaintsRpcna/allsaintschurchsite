@@ -10,7 +10,7 @@ const navLinks = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="bg-white border-b border-gray-200">
+<header id="site-header" class="fixed top-0 left-0 w-full z-50 transition-colors duration-300">
   <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
     <a href="/" class="text-xl font-semibold text-gray-900 hover:text-gray-700">
       All Saints RPC
@@ -72,9 +72,24 @@ const currentPath = Astro.url.pathname;
   </nav>
 </header>
 
+<!-- Spacer to prevent content from hiding behind the fixed header -->
+<div id="header-spacer" class="h-[56px]"></div>
+
 <script>
+  const header = document.getElementById("site-header");
   const toggle = document.getElementById("menu-toggle");
   const menu = document.getElementById("mobile-menu");
+
+  function updateHeader() {
+    if (window.scrollY > 10) {
+      header?.classList.add("bg-slate-200", "border-b", "border-gray-200");
+    } else {
+      header?.classList.remove("bg-slate-200", "border-b", "border-gray-200");
+    }
+  }
+
+  updateHeader();
+  window.addEventListener("scroll", updateHeader);
 
   toggle?.addEventListener("click", () => {
     const isOpen = !menu?.classList.contains("hidden");
