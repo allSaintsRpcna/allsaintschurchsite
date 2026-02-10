@@ -31,7 +31,7 @@ const currentPath = Astro.url.pathname;
     <!-- Mobile menu button -->
     <button
       id="menu-toggle"
-      class="header-menu-btn md:hidden text-gray-700 hover:text-gray-900 transition-colors"
+      class="header-menu-btn md:hidden text-gray-700 hover:text-gray-900 transition-colors z-60"
       aria-label="Toggle menu"
       aria-expanded="false"
     >
@@ -61,19 +61,35 @@ const currentPath = Astro.url.pathname;
       </ul>
     </nav>
   </div>
+</header>
 
-  <!-- Mobile nav -->
-  <nav id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-slate-200">
-    <ul class="flex flex-col px-4 py-2">
+<!-- Full-page mobile menu modal -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-50 md:hidden pointer-events-none opacity-0 invisible bg-slate-800/90 transition-all duration-400 ease-in-out"
+>
+  <!-- Close button -->
+  <button
+    id="menu-close"
+    class="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors p-2"
+    aria-label="Close menu"
+  >
+    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+
+  <nav class="flex items-center justify-center h-full">
+    <ul id="mobile-menu-links" class="flex flex-col items-center gap-8 translate-y-6 transition-transform duration-400 ease-in-out">
       {navLinks.map((link) => (
         <li>
           <a
             href={link.href}
             class:list={[
-              "block py-2 text-sm transition-colors",
+              "text-2xl transition-colors",
               currentPath === link.href
-                ? "text-gray-900 font-medium"
-                : "text-gray-600 hover:text-gray-900",
+                ? "text-white font-semibold"
+                : "text-white/70 hover:text-white",
             ]}
           >
             {link.label}
@@ -82,7 +98,7 @@ const currentPath = Astro.url.pathname;
       ))}
     </ul>
   </nav>
-</header>
+</div>
 
 {!transparentHeader && <div id="header-spacer" class="h-[56px]"></div>}
 
@@ -111,6 +127,7 @@ const currentPath = Astro.url.pathname;
   const header = document.getElementById("site-header");
   const toggle = document.getElementById("menu-toggle");
   const menu = document.getElementById("mobile-menu");
+  const closeBtn = document.getElementById("menu-close");
 
   function updateHeader() {
     if (window.scrollY > 10) {
@@ -120,12 +137,24 @@ const currentPath = Astro.url.pathname;
     }
   }
 
+  const menuLinks = document.getElementById("mobile-menu-links");
+
+  function openMenu() {
+    menu?.classList.remove("pointer-events-none", "opacity-0", "invisible");
+    menuLinks?.classList.remove("translate-y-6");
+    document.body.style.overflow = "hidden";
+    toggle?.setAttribute("aria-expanded", "true");
+  }
+
+  function closeMenu() {
+    menu?.classList.add("pointer-events-none", "opacity-0", "invisible");
+    menuLinks?.classList.add("translate-y-6");
+    document.body.style.overflow = "";
+    toggle?.setAttribute("aria-expanded", "false");
+  }
+
   updateHeader();
   window.addEventListener("scroll", updateHeader);
-
-  toggle?.addEventListener("click", () => {
-    const isOpen = !menu?.classList.contains("hidden");
-    menu?.classList.toggle("hidden");
-    toggle.setAttribute("aria-expanded", String(!isOpen));
-  });
+  toggle?.addEventListener("click", openMenu);
+  closeBtn?.addEventListener("click", closeMenu);
 </script>
