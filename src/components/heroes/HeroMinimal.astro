@@ -1,0 +1,26 @@
+---
+import { Image } from "astro:assets";
+import heroImage from "../../assets/images/group-photo-5.jpg";
+---
+
+<section class="bg-slate-100 pt-8 pb-16 md:pt-12 md:pb-24">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-8 md:mb-12">
+      <p class="text-sm uppercase tracking-[0.2em] text-slate-500 mb-3">Welcome</p>
+      <h1 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4">All Saints Reformed Presbyterian Church</h1>
+      <p class="text-gray-600 text-base md:text-lg max-w-lg mx-auto">
+        Worship with us each Lord's Day as we gather to glorify God and enjoy Him forever.
+      </p>
+    </div>
+    <div class="relative rounded-xl overflow-hidden shadow-2xl">
+      <Image
+        src={heroImage}
+        alt="All Saints Reformed Presbyterian Church congregation"
+        class="w-full h-[300px] md:h-[450px] object-cover"
+        widths={[640, 1024, 1536]}
+        sizes="(max-width: 1152px) 100vw, 1152px"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+    </div>
+  </div>
+</section>

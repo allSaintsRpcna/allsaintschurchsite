@@ -1,4 +1,10 @@
 ---
+interface Props {
+  transparentHeader?: boolean;
+}
+
+const { transparentHeader = false } = Astro.props;
+
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
@@ -10,16 +16,22 @@ const navLinks = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header id="site-header" class="fixed top-0 left-0 w-full z-50 transition-colors duration-300">
+<header
+  id="site-header"
+  class:list={[
+    "fixed top-0 left-0 w-full z-50 transition-all duration-300",
+    transparentHeader && "header-transparent",
+  ]}
+>
   <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-    <a href="/" class="text-xl font-semibold text-gray-900 hover:text-gray-700">
+    <a href="/" class="header-logo text-xl font-semibold text-gray-900 hover:text-gray-700 transition-colors">
       All Saints RPC
     </a>
 
     <!-- Mobile menu button -->
     <button
       id="menu-toggle"
-      class="md:hidden text-gray-700 hover:text-gray-900"
+      class="header-menu-btn md:hidden text-gray-700 hover:text-gray-900 transition-colors"
       aria-label="Toggle menu"
       aria-expanded="false"
     >
@@ -36,7 +48,7 @@ const currentPath = Astro.url.pathname;
             <a
               href={link.href}
               class:list={[
-                "text-sm transition-colors",
+                "header-nav-link text-sm transition-colors",
                 currentPath === link.href
                   ? "text-gray-900 font-medium"
                   : "text-gray-600 hover:text-gray-900",
@@ -51,7 +63,7 @@ const currentPath = Astro.url.pathname;
   </div>
 
   <!-- Mobile nav -->
-  <nav id="mobile-menu" class="hidden md:hidden border-t border-gray-100">
+  <nav id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-slate-200">
     <ul class="flex flex-col px-4 py-2">
       {navLinks.map((link) => (
         <li>
@@ -72,8 +84,28 @@ const currentPath = Astro.url.pathname;
   </nav>
 </header>
 
-<!-- Spacer to prevent content from hiding behind the fixed header -->
-<div id="header-spacer" class="h-[56px]"></div>
+{!transparentHeader && <div id="header-spacer" class="h-[56px]"></div>}
+
+<style>
+  .header-transparent:not(.header-scrolled) .header-logo {
+    color: white;
+  }
+  .header-transparent:not(.header-scrolled) .header-logo:hover {
+    color: rgb(229 231 235);
+  }
+  .header-transparent:not(.header-scrolled) .header-nav-link {
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .header-transparent:not(.header-scrolled) .header-nav-link:hover {
+    color: white;
+  }
+  .header-transparent:not(.header-scrolled) .header-menu-btn {
+    color: white;
+  }
+  .header-transparent:not(.header-scrolled) .header-menu-btn:hover {
+    color: rgb(229 231 235);
+  }
+</style>
 
 <script>
   const header = document.getElementById("site-header");
@@ -82,9 +114,9 @@ const currentPath = Astro.url.pathname;
 
   function updateHeader() {
     if (window.scrollY > 10) {
-      header?.classList.add("bg-slate-200");
+      header?.classList.add("bg-slate-200", "header-scrolled");
     } else {
-      header?.classList.remove("bg-slate-200");
+      header?.classList.remove("bg-slate-200", "header-scrolled");
     }
   }
 

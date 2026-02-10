@@ -1,13 +1,10 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
+import HeroFullBleed from "../components/heroes/HeroFullBleed.astro";
 ---
 
-<PageLayout>
-  <section class="py-12 border-b border-t border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-amber-200">
-      <p>Section 1</p>
-    </div>
-  </section>
+<PageLayout transparentHeader>
+  <HeroFullBleed />
 
   <section class="py-12 border-b border-amber-700 border-dashed">
     <div class="max-w-6xl mx-auto px-4 bg-blue-200">

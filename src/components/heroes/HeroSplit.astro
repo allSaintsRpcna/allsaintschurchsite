@@ -1,0 +1,37 @@
+---
+import { Image } from "astro:assets";
+import heroImage from "../../assets/images/group-photo-4.jpg";
+---
+
+<section class="w-full">
+  <div class="flex flex-col md:flex-row min-h-[500px] md:min-h-[600px]">
+    <!-- Image half -->
+    <div class="relative w-full md:w-1/2 h-[300px] md:h-auto">
+      <Image
+        src={heroImage}
+        alt="All Saints Reformed Presbyterian Church congregation"
+        class="absolute inset-0 w-full h-full object-cover"
+        widths={[640, 1024, 1536]}
+        sizes="(max-width: 768px) 100vw, 50vw"
+      />
+    </div>
+    <!-- Text half -->
+    <div class="w-full md:w-1/2 bg-stone-800 text-white flex items-center">
+      <div class="px-8 md:px-12 lg:px-16 py-12 md:py-0">
+        <p class="text-sm uppercase tracking-[0.2em] text-stone-400 mb-4">Welcome Home</p>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+          All Saints<br />Reformed<br />Presbyterian Church
+        </h1>
+        <p class="text-stone-300 text-base md:text-lg mb-8 max-w-md">
+          Come worship with us. We are a community rooted in Scripture, united by grace, and growing together in Christ.
+        </p>
+        <a
+          href="/about"
+          class="inline-block border-2 border-white text-white px-6 py-3 text-sm font-semibold uppercase tracking-wider hover:bg-white hover:text-stone-800 transition-colors"
+        >
+          Learn More
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
