@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import heroImage from "../../assets/images/group-photo-1.jpg";
+import Button from "../Button.astro";
 ---
 
 <section class="relative h-screen w-full overflow-hidden">
@@ -22,11 +23,6 @@ import heroImage from "../../assets/images/group-photo-1.jpg";
     <p class="text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
       A community united in faith, growing together in grace and truth.
     </p>
-    <a
-      href="/about"
-      class="inline-block bg-white text-gray-900 px-8 py-3 text-sm font-semibold uppercase tracking-wider hover:bg-gray-100 transition-colors"
-    >
-      Learn More
-    </a>
+    <Button href="/about">Learn More</Button>
   </div>
 </section>
