@@ -6,6 +6,8 @@ import SiteLayout from "./SiteLayout.astro";
 
 <SiteLayout>
   <Header />
-  <slot />
+  <main class="flex-grow">
+    <slot />
+  </main>
   <Footer />
 </SiteLayout>
