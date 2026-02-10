@@ -3,6 +3,7 @@ import PageLayout from "../layouts/PageLayout.astro";
 import HeroFullBleed from "../components/heroes/HeroFullBleed.astro";
 import WorshipSideBySide from "../components/worship/WorshipSideBySide.astro";
 import RecentSermons from "../components/sermons/RecentSermons.astro";
+import FellowshipEvents from "../components/events/FellowshipEvents.astro";
 ---
 
 <PageLayout transparentHeader>
@@ -11,11 +12,8 @@ import RecentSermons from "../components/sermons/RecentSermons.astro";
   <WorshipSideBySide />
 
   <RecentSermons />
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-red-200">
-      <p>Section 6</p>
-    </div>
-  </section>
+
+  <FellowshipEvents />
   <section class="py-12 border-b border-amber-700 border-dashed">
     <div class="max-w-6xl mx-auto px-4 bg-orange-200">
       <p>Section 7</p>
