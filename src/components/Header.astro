@@ -82,9 +82,9 @@ const currentPath = Astro.url.pathname;
 
   function updateHeader() {
     if (window.scrollY > 10) {
-      header?.classList.add("bg-slate-200", "border-b", "border-gray-200");
+      header?.classList.add("bg-slate-200");
     } else {
-      header?.classList.remove("bg-slate-200", "border-b", "border-gray-200");
+      header?.classList.remove("bg-slate-200");
     }
   }
 
