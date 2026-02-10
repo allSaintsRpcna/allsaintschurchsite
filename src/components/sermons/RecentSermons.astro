@@ -1,0 +1,77 @@
+---
+const sermons = [
+  {
+    title: "The Blessedness of the Righteous",
+    series: "Psalms of David",
+    passage: "Psalm 1:1–6",
+    speaker: "Rev. James Knox",
+    initials: "JK",
+    date: "02/02/2026",
+    day: "Lord's Day",
+    duration: 42,
+  },
+  {
+    title: "Christ Our Mediator",
+    series: "Westminster Shorter Catechism",
+    passage: "1 Timothy 2:5–6",
+    speaker: "Rev. James Knox",
+    initials: "JK",
+    date: "01/25/2026",
+    day: "Lord's Day",
+    duration: 38,
+  },
+  {
+    title: "The King on Zion's Hill",
+    series: "Psalms of David",
+    passage: "Psalm 2:1–12",
+    speaker: "Rev. David Mitchell",
+    initials: "DM",
+    date: "01/18/2026",
+    day: "Lord's Day",
+    duration: 45,
+  },
+  {
+    title: "The Rule of Faith and Life",
+    series: "Westminster Shorter Catechism",
+    passage: "2 Timothy 3:16–17",
+    speaker: "Rev. James Knox",
+    initials: "JK",
+    date: "01/11/2026",
+    day: "Lord's Day",
+    duration: 40,
+  },
+];
+---
+
+<section class="py-16 md:py-24 bg-stone-50">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-stone-900 mb-10 text-center">
+      Recent Sermons
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {sermons.map((sermon) => (
+        <div class="bg-white rounded-lg shadow overflow-hidden flex">
+          <div class="bg-stone-800 w-28 shrink-0 flex flex-col items-center justify-center p-4">
+            <img
+              src={`https://i.pravatar.cc/80?u=${sermon.initials}`}
+              alt={sermon.speaker}
+              class="w-14 h-14 rounded-full object-cover ring-2 ring-stone-600"
+            />
+            <p class="text-xs text-stone-400 mt-2 text-center">{sermon.speaker}</p>
+          </div>
+          <div class="p-4 flex flex-col flex-1 min-w-0">
+            <h3 class="font-bold text-stone-900 leading-snug line-clamp-2" title={sermon.title}>{sermon.title}</h3>
+            <p class="text-sm text-stone-500 mt-1">{sermon.series} &middot; {sermon.passage}</p>
+            <p class="text-sm text-stone-400 mt-1">{sermon.day} &middot; {sermon.date} &middot; {sermon.duration} min</p>
+            <a
+              href="#"
+              class="mt-3 self-start text-sm font-semibold uppercase tracking-wider text-stone-900 border border-stone-300 rounded px-4 py-1.5 hover:bg-stone-100 transition-colors"
+            >
+              Listen
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
