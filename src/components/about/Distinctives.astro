@@ -1,0 +1,77 @@
+---
+import { Image } from "astro:assets";
+import groupPhoto2 from "../../assets/images/group-photo-2.jpg";
+import bibleImage from "../../assets/images/bible-1.jpg";
+import groupPhoto3 from "../../assets/images/group-photo-3.jpg";
+import bookStudy from "../../assets/images/book-study-1.jpg";
+import groupPhoto5 from "../../assets/images/group-photo-5.jpg";
+
+const distinctives = [
+  {
+    title: "Confessional Reformed Theology",
+    description:
+      "We hold to the Westminster Confession of Faith and the Larger and Shorter Catechisms as faithful summaries of biblical teaching. These historic standards unite our congregation around the doctrines of grace and provide a clear framework for understanding Scripture.",
+    image: groupPhoto2,
+    alt: "Church congregation gathered together",
+  },
+  {
+    title: "Exclusive Psalmody",
+    description:
+      "In our worship services we sing only the inspired Psalms of Scripture, without the accompaniment of musical instruments. We believe the 150 Psalms are God's appointed hymn book for His church, covering the full range of human experience and emotion.",
+    image: bibleImage,
+    alt: "An open Bible",
+  },
+  {
+    title: "Regulative Principle of Worship",
+    description:
+      "We worship God only in the ways He has commanded in His word. This means our services center on the preaching of the Word, the administration of the sacraments, prayer, and the singing of Psalms — nothing more and nothing less than what Scripture prescribes.",
+    image: groupPhoto3,
+    alt: "Church members worshiping together",
+  },
+  {
+    title: "Covenant Community",
+    description:
+      "We are a church of believers and their children, embracing the biblical teaching that God works through families and generations. We welcome people of every background, culture, and walk of life into a fellowship shaped by the gospel rather than the world's divisions.",
+    image: bookStudy,
+    alt: "Members studying together",
+  },
+  {
+    title: "Expository Preaching",
+    description:
+      "The faithful proclamation of God's word stands at the center of our worship and ministry. Our preaching works through books of the Bible, explaining the text and applying it to the lives of God's people so that Christ is seen in all of Scripture.",
+    image: groupPhoto5,
+    alt: "Pastor preaching to the congregation",
+  },
+];
+---
+
+<section class="py-16 md:py-24 bg-white">
+  <div class="max-w-6xl mx-auto px-4">
+    <p class="text-sm uppercase tracking-[0.3em] text-stone-400 mb-3 text-center">What Sets Us Apart</p>
+    <h2 class="text-3xl md:text-4xl font-bold text-stone-900 mb-16 text-center">Our Distinctives</h2>
+
+    <div class="space-y-20 md:space-y-28">
+      {distinctives.map((item, i) => (
+        <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+          <div class:list={[i % 2 !== 0 && "md:order-2"]}>
+            <span class="text-sm font-semibold text-stone-400">0{i + 1}</span>
+            <h3 class="text-2xl md:text-3xl font-bold text-stone-900 mt-1 mb-4">{item.title}</h3>
+            <p class="text-stone-600 leading-relaxed">{item.description}</p>
+          </div>
+          <div class:list={[
+            "w-full aspect-[4/3] rounded-lg overflow-hidden shadow-lg",
+            i % 2 !== 0 && "md:order-1",
+          ]}>
+            <Image
+              src={item.image}
+              alt={item.alt}
+              class="w-full h-full object-cover"
+              widths={[400, 800, 1200]}
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

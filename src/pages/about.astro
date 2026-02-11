@@ -1,65 +1,23 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
+import Distinctives from "../components/about/Distinctives.astro";
 ---
 
 <PageLayout>
-  <section class="py-12 border-b border-t border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-amber-200">
-      <p>Section 1</p>
+  <!-- Hero Intro -->
+  <section class="py-20 md:py-28 bg-stone-800 text-center">
+    <div class="max-w-3xl mx-auto px-4">
+      <p class="text-sm uppercase tracking-[0.3em] text-white/60 mb-4">Who We Are</p>
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">About All Saints</h1>
+      <p class="text-lg text-stone-300 leading-relaxed">
+        All Saints Reformed Presbyterian Church is a growing body of worshipers
+        consisting of believers and their children. From the early days of our
+        humble beginnings, All Saints has aimed to reach the lost in our area and
+        to welcome those seeking fellowship with a church which loves Jesus
+        Christ and the truth He has revealed in Scripture.
+      </p>
     </div>
   </section>
 
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-blue-200">
-      <p>Section 2</p>
-    </div>
-  </section>
-
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-green-200">
-      <p>Section 3</p>
-    </div>
-  </section>
-
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-yellow-200">
-      <p>Section 4</p>
-    </div>
-  </section>
-
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-purple-200">
-      <p>Section 5</p>
-    </div>
-  </section>
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-red-200">
-      <p>Section 6</p>
-    </div>
-  </section>
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-orange-200">
-      <p>Section 7</p>
-    </div>
-  </section>
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-pink-200">
-      <p>Section 8</p>
-    </div>
-  </section>
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-gray-200">
-      <p>Section 9</p>
-    </div>
-  </section>
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-gray-200">
-      <p>Section 10</p>
-    </div>
-  </section>
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-gray-200">
-      <p>Section 11</p>
-    </div>
-  </section>
+  <Distinctives />
 </PageLayout>
