@@ -1,18 +1,328 @@
 ---
 import PageLayout from "../../layouts/PageLayout.astro";
+import { largerCatechism } from "../../data/largerCatechism.js";
+
+const alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+const totalQuestions = largerCatechism.length;
+const groups: { start: number; end: number }[] = [];
+for (let i = 0; i < totalQuestions; i += 10) {
+  groups.push({
+    start: i + 1,
+    end: Math.min(i + 10, totalQuestions),
+  });
+}
 ---
 
-<PageLayout>
-  <section class="py-20 md:py-28 bg-stone-800 text-center">
+<PageLayout transparentHeader>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+    rel="stylesheet"
+  />
+
+  <section class="pt-32 pb-20 md:pt-40 md:pb-28 bg-stone-800 text-center">
     <div class="max-w-3xl mx-auto px-4">
       <p class="text-sm uppercase tracking-[0.3em] text-white/60 mb-4">Confessional Document</p>
       <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Westminster Larger Catechism</h1>
     </div>
   </section>
 
-  <section class="py-16 md:py-24 bg-white">
-    <div class="max-w-3xl mx-auto px-4">
-      <p class="text-stone-500 italic">Content coming soon.</p>
-    </div>
-  </section>
+  <div class="wlc-page">
+    <!-- Table of Contents -->
+    <section class="wlc-toc-section">
+      <div class="max-w-2xl mx-auto px-4">
+        <div class="wlc-divider-ornate">
+          <span>&#8226; &#8226; &#8226;</span>
+        </div>
+        <h2 class="wlc-toc-heading">Table of Contents</h2>
+        <div class="wlc-divider-line"></div>
+        <div class="wlc-toc-grid">
+          {
+            groups.map((group) => (
+              <a href={`#q-${group.start}`} class="wlc-toc-link">
+                Questions {group.start}&ndash;{group.end}
+              </a>
+            ))
+          }
+        </div>
+        <div class="wlc-divider-line"></div>
+      </div>
+    </section>
+
+    <!-- Catechism Content -->
+    <section class="wlc-content-section">
+      <div class="max-w-2xl mx-auto px-4">
+        {
+          largerCatechism.map((item, index) => (
+            <article
+              id={`q-${item.id}`}
+              class:list={[
+                "wlc-question-block",
+                index > 0 && "wlc-question-border",
+              ]}
+            >
+              <div class="wlc-question">
+                <span class="wlc-q-num">Q. {item.id}.</span>
+                <span>{item.question}</span>
+              </div>
+
+              <div class="wlc-answer">
+                <span class="wlc-a-label">A.</span>
+                {item.answer.map((text: string, answerIndex: number) => (
+                  <span>
+                    {text}
+                    {item.proofTexts?.[answerIndex]?.length > 0 && (
+                      <sup class="wlc-sup">{alphabet[answerIndex]}</sup>
+                    )}{" "}
+                  </span>
+                ))}
+              </div>
+
+              {item.proofTexts?.some((refs: any[]) => refs?.length > 0) && (
+                <div class="wlc-proofs">
+                  {item.answer.map((_: string, answerIndex: number) =>
+                    item.proofTexts?.[answerIndex]?.length > 0 && (
+                      <span class="wlc-proof-line">
+                        <span class="wlc-proof-letter">
+                          {alphabet[answerIndex]}.
+                        </span>{" "}
+                        {item.proofTexts[answerIndex].map(
+                          (ref: { book: string; verse: string }, refIndex: number) => (
+                            <span class="wlc-proof-ref">
+                              {ref.book} {ref.verse}
+                              {refIndex < item.proofTexts[answerIndex].length - 1 ? "; " : ""}
+                            </span>
+                          ),
+                        )}
+                      </span>
+                    ),
+                  )}
+                </div>
+              )}
+
+              {item.id % 10 === 0 && (
+                <div class="wlc-back-top">
+                  <a href="#q-1" class="wlc-back-link">
+                    &uarr; Return to Contents
+                  </a>
+                </div>
+              )}
+            </article>
+          ))
+        }
+
+        <div class="wlc-finis">
+          <div class="wlc-divider-ornate"><span>&#10022;</span></div>
+          <p>Soli Deo Gloria</p>
+          <div class="wlc-divider-ornate"><span>&#10022;</span></div>
+        </div>
+      </div>
+    </section>
+  </div>
 </PageLayout>
+
+<style>
+  /* ── Base ── */
+  .wlc-page {
+    --color-ink: #2c2416;
+    --color-ink-light: #5c5244;
+    --color-ink-muted: #8a7e6e;
+    --color-parchment: #f5f0e8;
+    --color-parchment-dark: #ebe4d6;
+    --color-accent: #7a3b2e;
+    --font-display: "Cormorant Garamond", "Georgia", serif;
+    --font-body: "EB Garamond", "Georgia", serif;
+    background-color: white;
+    color: var(--color-ink);
+  }
+
+  /* ── Ornaments & Rules ── */
+  .wlc-divider-ornate {
+    text-align: center;
+    margin: 2rem 0;
+    color: var(--color-ink-muted);
+    font-size: 0.75rem;
+    letter-spacing: 0.75em;
+  }
+
+  .wlc-divider-line {
+    border: none;
+    border-top: 1px solid var(--color-ink-muted);
+    opacity: 0.3;
+    max-width: 12rem;
+    margin: 1.5rem auto;
+  }
+
+  /* ── Table of Contents ── */
+  .wlc-toc-section {
+    padding: 3rem 1rem 3.5rem;
+    background-color: white;
+  }
+
+  .wlc-toc-heading {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.75rem;
+    text-align: center;
+    letter-spacing: 0.05em;
+    color: var(--color-ink);
+    margin-bottom: 1.5rem;
+  }
+
+  .wlc-toc-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin: 2rem 0;
+  }
+
+  @media (min-width: 640px) {
+    .wlc-toc-grid {
+      grid-template-columns: 1fr 1fr;
+      column-gap: 2.5rem;
+    }
+  }
+
+  .wlc-toc-link {
+    display: block;
+    padding: 0.4rem 0;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--color-ink-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .wlc-toc-link:hover {
+    color: var(--color-accent);
+  }
+
+  /* ── Content Section ── */
+  .wlc-content-section {
+    padding: 3rem 1rem 5rem;
+    background-color: white;
+  }
+
+  /* ── Question Blocks ── */
+  .wlc-question-block {
+    scroll-margin-top: 5rem;
+    padding-bottom: 2rem;
+  }
+
+  .wlc-question-border {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--color-ink-muted);
+    border-top-style: solid;
+    position: relative;
+  }
+
+  .wlc-question-border::before {
+    content: "\2726";
+    position: absolute;
+    top: -0.6em;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    padding: 0 1rem;
+    color: var(--color-ink-muted);
+    font-size: 0.75rem;
+  }
+
+  .wlc-question {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    line-height: 1.85;
+    color: var(--color-ink);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .wlc-q-num {
+    color: var(--color-ink-muted);
+    margin-right: 0.25em;
+    font-variant-numeric: oldstyle-nums;
+  }
+
+  .wlc-answer {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    line-height: 1.85;
+    color: var(--color-ink);
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  .wlc-a-label {
+    font-weight: 600;
+    color: var(--color-ink-muted);
+    margin-right: 0.25em;
+  }
+
+  .wlc-sup {
+    font-size: 0.65em;
+    vertical-align: super;
+    line-height: 0;
+    color: var(--color-accent);
+    font-weight: 600;
+    cursor: default;
+    margin-left: 1px;
+  }
+
+  /* ── Proof Texts ── */
+  .wlc-proofs {
+    margin-top: 0.75rem;
+    opacity: 0.65;
+  }
+
+  .wlc-proof-line {
+    display: inline;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--color-ink-light);
+    margin-right: 0.75rem;
+  }
+
+  .wlc-proof-letter {
+    font-weight: 600;
+    color: var(--color-accent);
+    opacity: 0.9;
+  }
+
+  .wlc-proof-ref {
+    font-style: italic;
+  }
+
+  /* ── Back to Top ── */
+  .wlc-back-top {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+
+  .wlc-back-link {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--color-ink-muted);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+
+  .wlc-back-link:hover {
+    color: var(--color-accent);
+  }
+
+  /* ── Finis ── */
+  .wlc-finis {
+    margin-top: 4rem;
+    text-align: center;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--color-ink-muted);
+    letter-spacing: 0.1em;
+  }
+</style>

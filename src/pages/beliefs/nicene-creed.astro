@@ -2,17 +2,121 @@
 import PageLayout from "../../layouts/PageLayout.astro";
 ---
 
-<PageLayout>
-  <section class="py-20 md:py-28 bg-stone-800 text-center">
+<PageLayout transparentHeader>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+    rel="stylesheet"
+  />
+
+  <section class="pt-32 pb-20 md:pt-40 md:pb-28 bg-stone-800 text-center">
     <div class="max-w-3xl mx-auto px-4">
       <p class="text-sm uppercase tracking-[0.3em] text-white/60 mb-4">Ecumenical Creed</p>
       <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Nicene Creed</h1>
     </div>
   </section>
 
-  <section class="py-16 md:py-24 bg-white">
-    <div class="max-w-3xl mx-auto px-4">
-      <p class="text-stone-500 italic">Content coming soon.</p>
-    </div>
-  </section>
+  <div class="creed-page">
+    <section class="creed-content-section">
+      <div class="max-w-2xl mx-auto px-4">
+        <div class="creed-divider-ornate"><span>&#8226; &#8226; &#8226;</span></div>
+
+        <p class="creed-blurb">Adopted at the Council of Nicaea in 325 AD, this creed defines the orthodox doctrine of the Trinity and the deity of Christ.</p>
+
+        <div class="creed-divider-line"></div>
+
+        <div class="creed-text">
+          <p>We believe in one God, the Father Almighty, Maker of heaven and earth, of all things visible and invisible.</p>
+
+          <p class="creed-break">And in one Lord Jesus Christ, the only-begotten Son of God, begotten of His Father before all worlds; God of God, Light of Light, very God of very God; begotten, not made, being of one substance with the Father, by whom all things were made; Who, for us men and for our salvation, came down from heaven, and was incarnate by the Holy Spirit of the virgin Mary, and was made man; and was crucified also for us under Pontius Pilate; He suffered and was buried; and the third day He rose again, according to the Scriptures; and ascended into heaven, and is seated at the right hand of the Father; and He shall come again, with glory, to judge both the living and the dead; Whose kingdom shall have no end.</p>
+
+          <p class="creed-break">And we believe in the Holy Spirit, the Lord and Giver of Life; who proceeds from the Father and the Son; who with the Father and the Son together is worshiped and glorified; who spoke by the prophets. And we believe in one holy catholic (universal) and apostolic church. We acknowledge one baptism for the remission of sins; and we look for the resurrection of the dead, and the life of the world to come.</p>
+
+          <p class="creed-amen">Amen.</p>
+        </div>
+
+        <div class="creed-divider-ornate"><span>&#10022;</span></div>
+        <p class="creed-finis">Soli Deo Gloria</p>
+        <div class="creed-divider-ornate"><span>&#10022;</span></div>
+      </div>
+    </section>
+  </div>
 </PageLayout>
+
+<style>
+  .creed-page {
+    --color-ink: #2c2416;
+    --color-ink-muted: #8a7e6e;
+    --color-accent: #7a3b2e;
+    --font-display: "Cormorant Garamond", "Georgia", serif;
+    --font-body: "EB Garamond", "Georgia", serif;
+    background-color: white;
+    color: var(--color-ink);
+  }
+
+  .creed-divider-ornate {
+    text-align: center;
+    margin: 2rem 0;
+    color: var(--color-ink-muted);
+    font-size: 0.75rem;
+    letter-spacing: 0.75em;
+  }
+
+  .creed-content-section {
+    padding: 3rem 1rem 5rem;
+    background-color: white;
+  }
+
+  .creed-blurb {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--color-ink-muted);
+    text-align: center;
+    max-width: 36rem;
+    margin: 0 auto;
+  }
+
+  .creed-divider-line {
+    border: none;
+    border-top: 1px solid var(--color-ink-muted);
+    opacity: 0.3;
+    max-width: 12rem;
+    margin: 2rem auto;
+  }
+
+  .creed-text {
+    font-family: var(--font-body);
+    font-size: 1.35rem;
+    line-height: 2;
+    color: var(--color-ink);
+    text-align: center;
+  }
+
+  .creed-text p {
+    margin: 0;
+  }
+
+  .creed-break {
+    margin-top: 1.5rem !important;
+  }
+
+  .creed-amen {
+    margin-top: 2rem !important;
+    font-weight: 600;
+    font-variant: small-caps;
+    letter-spacing: 0.15em;
+    font-size: 1.5rem;
+  }
+
+  .creed-finis {
+    text-align: center;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--color-ink-muted);
+    letter-spacing: 0.1em;
+  }
+</style>

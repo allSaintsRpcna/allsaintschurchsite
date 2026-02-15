@@ -41,7 +41,7 @@ const chapters = [
 const alphabet = "abcdefghijklmnopqrstuvwxyz";
 ---
 
-<PageLayout>
+<PageLayout transparentHeader>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -49,20 +49,14 @@ const alphabet = "abcdefghijklmnopqrstuvwxyz";
     rel="stylesheet"
   />
 
-  <div class="wcf-page">
-    <!-- Hero -->
-    <section class="wcf-hero">
-      <div class="max-w-3xl mx-auto px-4 text-center">
-        <div class="wcf-ornament">&#10022;</div>
-        <p class="wcf-hero-subtitle">A Confessional Document</p>
-        <h1 class="wcf-hero-title">The Westminster<br />Confession of Faith</h1>
-        <p class="wcf-hero-date">
-          Agreed upon by the Assembly of Divines at Westminster, 1646
-        </p>
-        <div class="wcf-ornament">&#10022;</div>
-      </div>
-    </section>
+  <section class="pt-32 pb-20 md:pt-40 md:pb-28 bg-stone-800 text-center">
+    <div class="max-w-3xl mx-auto px-4">
+      <p class="text-sm uppercase tracking-[0.3em] text-white/60 mb-4">Confessional Document</p>
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Westminster Confession of Faith</h1>
+    </div>
+  </section>
 
+  <div class="wcf-page">
     <!-- Table of Contents -->
     <section class="wcf-toc-section">
       <div class="max-w-2xl mx-auto px-4">
