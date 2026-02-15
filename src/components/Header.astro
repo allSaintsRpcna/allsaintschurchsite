@@ -21,21 +21,23 @@ const currentPath = Astro.url.pathname;
 
 <header
   id="site-header"
+  data-transparent={transparentHeader ? "true" : "false"}
   class:list={[
     "fixed top-0 left-0 w-full z-50 transition-all duration-300",
-    transparentHeader && "header-transparent",
+    transparentHeader ? "header-transparent" : "bg-stone-800",
   ]}
 >
-  <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
     <a
       href="/"
-      class="header-logo text-xl font-semibold text-gray-900 hover:text-gray-700 transition-colors"
+      class="header-logo"
     >
       <Image
         src={logo}
         alt="All Saints Reformed Presbyterian Church"
         width={250}
         height={250}
+        class="h-16 w-auto"
       />
     </a>
 
@@ -132,7 +134,7 @@ const currentPath = Astro.url.pathname;
   </nav>
 </div>
 
-{!transparentHeader && <div id="header-spacer" class="h-[56px]" />}
+{!transparentHeader && <div id="header-spacer" class="h-[88px]" />}
 
 <style>
   .header-transparent:not(.header-scrolled) .header-logo {
@@ -153,6 +155,34 @@ const currentPath = Astro.url.pathname;
   .header-transparent:not(.header-scrolled) .header-menu-btn:hover {
     color: rgb(229 231 235);
   }
+
+  /* Non-transparent initial state — light text on dark background */
+  :not(.header-transparent):not(.header-scrolled) .header-nav-link {
+    color: rgba(255, 255, 255, 0.85);
+  }
+  :not(.header-transparent):not(.header-scrolled) .header-nav-link:hover {
+    color: white;
+  }
+  :not(.header-transparent):not(.header-scrolled) .header-menu-btn {
+    color: white;
+  }
+  :not(.header-transparent):not(.header-scrolled) .header-menu-btn:hover {
+    color: rgb(229 231 235);
+  }
+
+  /* Scrolled state — light text on dark background */
+  .header-scrolled .header-nav-link {
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .header-scrolled .header-nav-link:hover {
+    color: white;
+  }
+  .header-scrolled .header-menu-btn {
+    color: white;
+  }
+  .header-scrolled .header-menu-btn:hover {
+    color: rgb(229 231 235);
+  }
 </style>
 
 <script>
@@ -160,12 +190,19 @@ const currentPath = Astro.url.pathname;
   const toggle = document.getElementById("menu-toggle");
   const menu = document.getElementById("mobile-menu");
   const closeBtn = document.getElementById("menu-close");
+  const isTransparent = header?.dataset.transparent === "true";
 
   function updateHeader() {
     if (window.scrollY > 10) {
-      header?.classList.add("bg-slate-200", "header-scrolled");
+      header?.classList.add("bg-stone-900", "header-scrolled");
+      if (!isTransparent) {
+        header?.classList.remove("bg-stone-800");
+      }
     } else {
-      header?.classList.remove("bg-slate-200", "header-scrolled");
+      header?.classList.remove("bg-stone-900", "header-scrolled");
+      if (!isTransparent) {
+        header?.classList.add("bg-stone-800");
+      }
     }
   }
 
