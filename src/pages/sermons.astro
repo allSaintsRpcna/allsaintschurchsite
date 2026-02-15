@@ -1,65 +1,331 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
+import { Image } from "astro:assets";
+import groupPhoto1 from "../assets/images/group-photo-1.jpg";
+import bibleStudy1 from "../assets/images/bible-study-1.jpg";
+import bible1 from "../assets/images/bible-1.jpg";
+
+const speakerImage =
+  "https://vps.sermonaudio.com/resize_image/speaker/thumbnail/164/164/31778-0002.png?webp=true";
+
+const featuredSermons = [
+  {
+    title: "The Godly Wife's Adornment",
+    series: "Marriage & Family Reformation",
+    passage: "1 Peter 3:1–6",
+    speaker: "Seni Adeyemi",
+    date: "02/08/2026",
+    day: "Lord's Day",
+    duration: 41,
+    imageUrl: speakerImage,
+  },
+  {
+    title: "Blasphemy Against the Holy Spirit",
+    series: "The Gospel of Mark",
+    passage: "Mark 3:22–30",
+    speaker: "Seni Adeyemi",
+    date: "02/08/2026",
+    day: "Lord's Day",
+    duration: 47,
+    imageUrl: speakerImage,
+  },
+  {
+    title: "The Duty to Delight in Marriage",
+    series: "Marriage & Family Reformation",
+    passage: "Proverbs 5:5–19; Ecclesiastes 9:9",
+    speaker: "Seni Adeyemi",
+    date: "02/01/2026",
+    day: "Lord's Day",
+    duration: 35,
+    imageUrl: speakerImage,
+  },
+  {
+    title: "Christ's Zeal and Man's Blindness",
+    series: "The Gospel of Mark",
+    passage: "Mark 3:20–21",
+    speaker: "Seni Adeyemi",
+    date: "02/01/2026",
+    day: "Lord's Day",
+    duration: 40,
+    imageUrl: speakerImage,
+  },
+];
+
+const sermonSeries = [
+  {
+    title: "The Gospel of Mark",
+    description: "A verse-by-verse exposition through the Gospel of Mark, exploring the person and work of Jesus Christ.",
+    image: groupPhoto1,
+    href: "#",
+  },
+  {
+    title: "Marriage & Family Reformation",
+    description: "A series on the biblical foundations of marriage and family life, calling the church back to God's design.",
+    image: bibleStudy1,
+    href: "#",
+  },
+  {
+    title: "The Westminster Standards",
+    description: "Walking through the Westminster Confession and Catechisms to understand the system of doctrine in Scripture.",
+    image: bible1,
+    href: "#",
+  },
+];
+
+const latestSermons = [
+  {
+    title: "The Godly Wife's Adornment",
+    series: "Marriage & Family Reformation",
+    passage: "1 Peter 3:1–6",
+    speaker: "Seni Adeyemi",
+    date: "02/08/2026",
+    day: "Lord's Day",
+    duration: 41,
+    imageUrl: speakerImage,
+  },
+  {
+    title: "Blasphemy Against the Holy Spirit",
+    series: "The Gospel of Mark",
+    passage: "Mark 3:22–30",
+    speaker: "Seni Adeyemi",
+    date: "02/08/2026",
+    day: "Lord's Day",
+    duration: 47,
+    imageUrl: speakerImage,
+  },
+  {
+    title: "The Duty to Delight in Marriage",
+    series: "Marriage & Family Reformation",
+    passage: "Proverbs 5:5–19; Ecclesiastes 9:9",
+    speaker: "Seni Adeyemi",
+    date: "02/01/2026",
+    day: "Lord's Day",
+    duration: 35,
+    imageUrl: speakerImage,
+  },
+  {
+    title: "Christ's Zeal and Man's Blindness",
+    series: "The Gospel of Mark",
+    passage: "Mark 3:20–21",
+    speaker: "Seni Adeyemi",
+    date: "02/01/2026",
+    day: "Lord's Day",
+    duration: 40,
+    imageUrl: speakerImage,
+  },
+  {
+    title: "Placeholder Sermon Title 5",
+    series: "The Gospel of Mark",
+    passage: "Mark 3:13–19",
+    speaker: "Seni Adeyemi",
+    date: "01/25/2026",
+    day: "Lord's Day",
+    duration: 38,
+    imageUrl: speakerImage,
+  },
+  {
+    title: "Placeholder Sermon Title 6",
+    series: "Marriage & Family Reformation",
+    passage: "Genesis 2:18–25",
+    speaker: "Seni Adeyemi",
+    date: "01/25/2026",
+    day: "Lord's Day",
+    duration: 44,
+    imageUrl: speakerImage,
+  },
+  {
+    title: "Placeholder Sermon Title 7",
+    series: "The Gospel of Mark",
+    passage: "Mark 3:7–12",
+    speaker: "Seni Adeyemi",
+    date: "01/18/2026",
+    day: "Lord's Day",
+    duration: 42,
+    imageUrl: speakerImage,
+  },
+  {
+    title: "Placeholder Sermon Title 8",
+    series: "Marriage & Family Reformation",
+    passage: "Ephesians 5:22–33",
+    speaker: "Seni Adeyemi",
+    date: "01/18/2026",
+    day: "Lord's Day",
+    duration: 36,
+    imageUrl: speakerImage,
+  },
+  {
+    title: "Placeholder Sermon Title 9",
+    series: "The Gospel of Mark",
+    passage: "Mark 3:1–6",
+    speaker: "Seni Adeyemi",
+    date: "01/11/2026",
+    day: "Lord's Day",
+    duration: 39,
+    imageUrl: speakerImage,
+  },
+  {
+    title: "Placeholder Sermon Title 10",
+    series: "The Gospel of Mark",
+    passage: "Mark 2:23–28",
+    speaker: "Seni Adeyemi",
+    date: "01/11/2026",
+    day: "Lord's Day",
+    duration: 45,
+    imageUrl: speakerImage,
+  },
+  {
+    title: "Placeholder Sermon Title 11",
+    series: "Marriage & Family Reformation",
+    passage: "Colossians 3:18–21",
+    speaker: "Seni Adeyemi",
+    date: "01/04/2026",
+    day: "Lord's Day",
+    duration: 37,
+    imageUrl: speakerImage,
+  },
+  {
+    title: "Placeholder Sermon Title 12",
+    series: "The Gospel of Mark",
+    passage: "Mark 2:18–22",
+    speaker: "Seni Adeyemi",
+    date: "01/04/2026",
+    day: "Lord's Day",
+    duration: 43,
+    imageUrl: speakerImage,
+  },
+];
 ---
 
 <PageLayout>
-  <section class="py-12 border-b border-t border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-amber-200">
-      <p>Section 1</p>
+  <!-- Hero -->
+  <section class="py-20 md:py-28 bg-stone-800 text-center">
+    <div class="max-w-3xl mx-auto px-4">
+      <p class="text-sm uppercase tracking-[0.3em] text-white/60 mb-4">Listen & Learn</p>
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Sermons</h1>
+      <p class="text-lg text-stone-300 leading-relaxed">
+        Hear the faithful preaching of God's word from the pulpit of All Saints
+        Reformed Presbyterian Church.
+      </p>
     </div>
   </section>
 
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-blue-200">
-      <p>Section 2</p>
+  <!-- Featured Sermons -->
+  <section class="py-16 md:py-24 bg-stone-50">
+    <div class="max-w-6xl mx-auto px-4">
+      <p class="text-sm uppercase tracking-[0.3em] text-stone-400 mb-3 text-center">Recommended</p>
+      <h2 class="text-3xl md:text-4xl font-bold text-stone-900 mb-10 text-center">
+        Featured Sermons
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {featuredSermons.map((sermon) => (
+          <div class="bg-white rounded-lg shadow overflow-hidden flex">
+            <div class="bg-stone-800 w-28 shrink-0 flex flex-col items-center justify-center p-4">
+              <img
+                src={sermon.imageUrl}
+                alt={sermon.speaker}
+                class="w-14 h-14 rounded-full object-cover ring-2 ring-stone-600"
+              />
+              <p class="text-xs text-stone-400 mt-2 text-center">{sermon.speaker}</p>
+            </div>
+            <div class="p-4 flex flex-col flex-1 min-w-0">
+              <h3 class="font-bold text-stone-900 leading-snug line-clamp-2" title={sermon.title}>
+                {sermon.title}
+              </h3>
+              <p class="text-sm text-stone-500 mt-1">
+                {sermon.series} &middot; {sermon.passage}
+              </p>
+              <p class="text-sm text-stone-400 mt-1">
+                {sermon.day} &middot; {sermon.date} &middot; {sermon.duration} min
+              </p>
+              <a
+                href="#"
+                class="mt-3 self-start text-sm font-semibold uppercase tracking-wider text-stone-900 border border-stone-300 rounded px-4 py-1.5 hover:bg-stone-100 transition-colors"
+              >
+                Listen
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-green-200">
-      <p>Section 3</p>
+  <!-- Sermon Series -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <p class="text-sm uppercase tracking-[0.3em] text-stone-400 mb-3 text-center">Browse by Series</p>
+      <h2 class="text-3xl md:text-4xl font-bold text-stone-900 mb-10 text-center">
+        Sermon Series
+      </h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        {sermonSeries.map((series) => (
+          <a href={series.href} class="group relative rounded-lg overflow-hidden">
+            <div class="aspect-[16/9] overflow-hidden">
+              <Image
+                src={series.image}
+                alt=""
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                widths={[400, 800]}
+                sizes="(max-width: 768px) 100vw, 33vw"
+              />
+            </div>
+            <div class="relative -mt-8 mx-3 mb-3 rounded-lg bg-white/80 backdrop-blur-md p-5 shadow-lg">
+              <h3 class="text-lg font-bold text-stone-900 mb-1">{series.title}</h3>
+              <p class="text-sm text-stone-600 leading-relaxed mb-3">{series.description}</p>
+              <span class="text-sm font-semibold text-stone-400 group-hover:text-stone-700 transition-colors">
+                View Series &rarr;
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-yellow-200">
-      <p>Section 4</p>
-    </div>
-  </section>
-
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-purple-200">
-      <p>Section 5</p>
-    </div>
-  </section>
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-red-200">
-      <p>Section 6</p>
-    </div>
-  </section>
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-orange-200">
-      <p>Section 7</p>
-    </div>
-  </section>
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-pink-200">
-      <p>Section 8</p>
-    </div>
-  </section>
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-gray-200">
-      <p>Section 9</p>
-    </div>
-  </section>
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-gray-200">
-      <p>Section 10</p>
-    </div>
-  </section>
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-gray-200">
-      <p>Section 11</p>
+  <!-- Latest Sermons -->
+  <section class="py-16 md:py-24 bg-stone-100">
+    <div class="max-w-6xl mx-auto px-4">
+      <p class="text-sm uppercase tracking-[0.3em] text-stone-400 mb-3 text-center">Most Recent</p>
+      <h2 class="text-3xl md:text-4xl font-bold text-stone-900 mb-10 text-center">
+        Latest Sermons
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {latestSermons.map((sermon) => (
+          <div class="bg-white rounded-lg shadow-sm overflow-hidden flex flex-col">
+            <div class="bg-stone-800 flex items-center gap-3 p-3">
+              <img
+                src={sermon.imageUrl}
+                alt={sermon.speaker}
+                class="w-10 h-10 rounded-full object-cover ring-2 ring-stone-600"
+              />
+              <div class="min-w-0">
+                <p class="text-sm font-medium text-white truncate">{sermon.speaker}</p>
+                <p class="text-xs text-stone-400">{sermon.date}</p>
+              </div>
+            </div>
+            <div class="p-4 flex flex-col flex-1">
+              <h3 class="font-bold text-stone-900 text-sm leading-snug line-clamp-2" title={sermon.title}>
+                {sermon.title}
+              </h3>
+              <p class="text-xs text-stone-500 mt-1.5">
+                {sermon.series}
+              </p>
+              <p class="text-xs text-stone-400 mt-0.5">
+                {sermon.passage}
+              </p>
+              <div class="mt-auto pt-3 flex items-center justify-between">
+                <span class="text-xs text-stone-400">{sermon.duration} min</span>
+                <a
+                  href="#"
+                  class="text-xs font-semibold uppercase tracking-wider text-stone-900 border border-stone-300 rounded px-3 py-1 hover:bg-stone-100 transition-colors"
+                >
+                  Listen
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 </PageLayout>

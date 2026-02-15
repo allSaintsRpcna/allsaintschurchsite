@@ -1,65 +1,145 @@
 ---
 import PageLayout from "../layouts/PageLayout.astro";
+import { Image } from "astro:assets";
+import groupPhoto1 from "../assets/images/group-photo-1.jpg";
+import bible1 from "../assets/images/bible-1.jpg";
+import bibleStudy1 from "../assets/images/bible-study-1.jpg";
+import bookStudy1 from "../assets/images/book-study-1.jpg";
+import groupPhoto3 from "../assets/images/group-photo-3.jpg";
+import groupPhoto4 from "../assets/images/group-photo-4.jpg";
+import groupPhoto5 from "../assets/images/group-photo-5.jpg";
+import mensStudy1 from "../assets/images/mens-study-1.jpg";
+
+const confessionalDocuments = [
+  {
+    title: "Reformed Presbyterian Testimony",
+    description: "The distinctive testimony of the Reformed Presbyterian Church, applying the principles of Scripture and the Westminster Standards to contemporary issues.",
+    href: "/about/reformed-presbyterian-testimony",
+    image: groupPhoto1,
+  },
+  {
+    title: "Westminster Confession of Faith",
+    description: "The comprehensive statement of Reformed theology adopted in 1646, summarizing the system of doctrine found in Holy Scripture.",
+    href: "/about/westminster-confession-of-faith",
+    image: bible1,
+  },
+  {
+    title: "Westminster Larger Catechism",
+    description: "A thorough catechism of 196 questions and answers, designed for public teaching and a deeper understanding of Christian doctrine.",
+    href: "/about/westminster-larger-catechism",
+    image: bibleStudy1,
+  },
+  {
+    title: "Westminster Shorter Catechism",
+    description: "A concise catechism of 107 questions and answers, originally written for the instruction of children in the essentials of the Christian faith.",
+    href: "/about/westminster-shorter-catechism",
+    image: bookStudy1,
+  },
+];
+
+const creeds = [
+  {
+    title: "Apostles' Creed",
+    description: "One of the earliest summaries of Christian belief, widely used in worship as a confession of the foundational truths of the faith.",
+    href: "/about/apostles-creed",
+    image: groupPhoto3,
+  },
+  {
+    title: "Nicene Creed",
+    description: "Adopted at the Council of Nicaea in 325 AD, this creed defines the orthodox doctrine of the Trinity and the deity of Christ.",
+    href: "/about/nicene-creed",
+    image: groupPhoto4,
+  },
+  {
+    title: "Chalcedonian Definition",
+    description: "The statement from the Council of Chalcedon in 451 AD, affirming that Christ is one person with two natures — fully God and fully man.",
+    href: "/about/chalcedonian-definition",
+    image: groupPhoto5,
+  },
+  {
+    title: "Athanasian Creed",
+    description: "A detailed creed on the doctrines of the Trinity and the incarnation, historically attributed to Athanasius of Alexandria.",
+    href: "/about/athanasian-creed",
+    image: mensStudy1,
+  },
+];
 ---
 
 <PageLayout>
-  <section class="py-12 border-b border-t border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-amber-200">
-      <p>Section 1</p>
+  <!-- Hero -->
+  <section class="py-20 md:py-28 bg-stone-800 text-center">
+    <div class="max-w-3xl mx-auto px-4">
+      <p class="text-sm uppercase tracking-[0.3em] text-white/60 mb-4">What We Believe</p>
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Our Beliefs</h1>
+      <p class="text-lg text-stone-300 leading-relaxed">
+        We are a confessionally Reformed church, holding to the historic
+        creeds of the Christian faith and the doctrinal standards of the
+        Westminster Assembly as faithful summaries of the teaching of Scripture.
+      </p>
     </div>
   </section>
 
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-blue-200">
-      <p>Section 2</p>
+  <!-- Confessional Documents -->
+  <section class="py-16 md:py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <p class="text-sm uppercase tracking-[0.3em] text-stone-400 mb-3 text-center">Doctrinal Standards</p>
+      <h2 class="text-3xl md:text-4xl font-bold text-stone-900 mb-12 text-center">
+        Confessional Documents
+      </h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        {confessionalDocuments.map((doc) => (
+          <a href={doc.href} class="group relative rounded-lg overflow-hidden">
+            <div class="aspect-[16/9] overflow-hidden">
+              <Image
+                src={doc.image}
+                alt=""
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                widths={[400, 800]}
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            <div class="relative -mt-8 mx-3 mb-3 rounded-lg bg-white/80 backdrop-blur-md p-5 shadow-lg">
+              <h3 class="text-lg font-bold text-stone-900 mb-1">{doc.title}</h3>
+              <p class="text-sm text-stone-600 leading-relaxed mb-3">{doc.description}</p>
+              <span class="text-sm font-semibold text-stone-400 group-hover:text-stone-700 transition-colors">
+                Read Document &rarr;
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-green-200">
-      <p>Section 3</p>
-    </div>
-  </section>
-
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-yellow-200">
-      <p>Section 4</p>
-    </div>
-  </section>
-
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-purple-200">
-      <p>Section 5</p>
-    </div>
-  </section>
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-red-200">
-      <p>Section 6</p>
-    </div>
-  </section>
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-orange-200">
-      <p>Section 7</p>
-    </div>
-  </section>
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-pink-200">
-      <p>Section 8</p>
-    </div>
-  </section>
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-gray-200">
-      <p>Section 9</p>
-    </div>
-  </section>
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-gray-200">
-      <p>Section 10</p>
-    </div>
-  </section>
-  <section class="py-12 border-b border-amber-700 border-dashed">
-    <div class="max-w-6xl mx-auto px-4 bg-gray-200">
-      <p>Section 11</p>
+  <!-- Historic Creeds -->
+  <section class="py-16 md:py-24 bg-stone-100">
+    <div class="max-w-6xl mx-auto px-4">
+      <p class="text-sm uppercase tracking-[0.3em] text-stone-400 mb-3 text-center">Historic Christianity</p>
+      <h2 class="text-3xl md:text-4xl font-bold text-stone-900 mb-12 text-center">
+        Ecumenical Creeds
+      </h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        {creeds.map((creed) => (
+          <a href={creed.href} class="group relative rounded-lg overflow-hidden">
+            <div class="aspect-[16/9] overflow-hidden">
+              <Image
+                src={creed.image}
+                alt=""
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                widths={[400, 800]}
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            <div class="relative -mt-8 mx-3 mb-3 rounded-lg bg-white/80 backdrop-blur-md p-5 shadow-lg">
+              <h3 class="text-lg font-bold text-stone-900 mb-1">{creed.title}</h3>
+              <p class="text-sm text-stone-600 leading-relaxed mb-3">{creed.description}</p>
+              <span class="text-sm font-semibold text-stone-400 group-hover:text-stone-700 transition-colors">
+                Read Creed &rarr;
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 </PageLayout>

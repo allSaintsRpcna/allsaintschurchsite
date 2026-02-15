@@ -5,10 +5,13 @@ interface Props {
 
 const { transparentHeader = false } = Astro.props;
 
+import logo from "../assets/images/allsaints-logo2.png";
+import { Image } from "astro:assets";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/beliefs", label: "Beliefs" },
+  { href: "/leadership", label: "Leadership" },
   { href: "/sermons", label: "Sermons" },
   { href: "/contact", label: "Contact" },
 ];
@@ -24,8 +27,16 @@ const currentPath = Astro.url.pathname;
   ]}
 >
   <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-    <a href="/" class="header-logo text-xl font-semibold text-gray-900 hover:text-gray-700 transition-colors">
-      All Saints RPC
+    <a
+      href="/"
+      class="header-logo text-xl font-semibold text-gray-900 hover:text-gray-700 transition-colors"
+    >
+      <Image
+        src={logo}
+        alt="All Saints Reformed Presbyterian Church"
+        width={250}
+        height={250}
+      />
     </a>
 
     <!-- Mobile menu button -->
@@ -35,29 +46,41 @@ const currentPath = Astro.url.pathname;
       aria-label="Toggle menu"
       aria-expanded="false"
     >
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      <svg
+        class="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          id="menu-icon"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"></path>
       </svg>
     </button>
 
     <!-- Desktop nav -->
     <nav class="hidden md:block">
       <ul class="flex gap-6">
-        {navLinks.map((link) => (
-          <li>
-            <a
-              href={link.href}
-              class:list={[
-                "header-nav-link text-sm transition-colors",
-                currentPath === link.href
-                  ? "text-gray-900 font-medium"
-                  : "text-gray-600 hover:text-gray-900",
-              ]}
-            >
-              {link.label}
-            </a>
-          </li>
-        ))}
+        {
+          navLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class:list={[
+                  "header-nav-link text-sm transition-colors",
+                  currentPath === link.href
+                    ? "text-gray-900 font-medium"
+                    : "text-gray-600 hover:text-gray-900",
+                ]}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
       </ul>
     </nav>
   </div>
@@ -75,32 +98,41 @@ const currentPath = Astro.url.pathname;
     aria-label="Close menu"
   >
     <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M6 18L18 6M6 6l12 12"></path>
     </svg>
   </button>
 
   <nav class="flex items-center justify-center h-full">
-    <ul id="mobile-menu-links" class="flex flex-col items-center gap-8 translate-y-6 transition-transform duration-400 ease-in-out">
-      {navLinks.map((link) => (
-        <li>
-          <a
-            href={link.href}
-            class:list={[
-              "text-2xl transition-colors",
-              currentPath === link.href
-                ? "text-white font-semibold"
-                : "text-white/70 hover:text-white",
-            ]}
-          >
-            {link.label}
-          </a>
-        </li>
-      ))}
+    <ul
+      id="mobile-menu-links"
+      class="flex flex-col items-center gap-8 translate-y-6 transition-transform duration-400 ease-in-out"
+    >
+      {
+        navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class:list={[
+                "text-2xl transition-colors",
+                currentPath === link.href
+                  ? "text-white font-semibold"
+                  : "text-white/70 hover:text-white",
+              ]}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
     </ul>
   </nav>
 </div>
 
-{!transparentHeader && <div id="header-spacer" class="h-[56px]"></div>}
+{!transparentHeader && <div id="header-spacer" class="h-[56px]" />}
 
 <style>
   .header-transparent:not(.header-scrolled) .header-logo {
