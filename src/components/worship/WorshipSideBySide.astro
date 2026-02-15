@@ -1,7 +1,12 @@
 ---
+interface Props {
+  bgClass?: string;
+}
+
+const { bgClass = "bg-white" } = Astro.props;
 ---
 
-<section class="py-16 md:py-24 bg-white">
+<section class:list={["py-16 md:py-24", bgClass]}>
   <div class="max-w-6xl mx-auto px-4">
     <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
       <div>
